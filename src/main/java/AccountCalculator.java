@@ -1,5 +1,8 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class AccountCalculator {
     public int setPeopleAmount() {
         while (true) {
@@ -30,7 +33,8 @@ public class AccountCalculator {
             System.out.println("Товар успешно добавлен в калькулятор");
             Formatter formatter = new Formatter();
             System.out.println("Текущая сумма товаров - " + formatter.show(sum(products)));
-            System.out.println("Хотите добавить ещё один товар? да / завершить");
+            System.out.println("\nЧтобы продолжить заполнять счет - Введите любой символ\n" +
+                    "Для завершения - Введите команду 'завершить'");
             Scanner scanner = new Scanner(System.in);
             String command = scanner.next();
             if (command.equalsIgnoreCase("Завершить")) {
@@ -46,7 +50,9 @@ public class AccountCalculator {
             Scanner scanner = new Scanner(System.in);
             System.out.println("Введите название товара");
             nameProduct = scanner.nextLine();
-            if (nameProduct.isEmpty()) {
+            Pattern pattern = Pattern.compile("\\S");
+            Matcher matcher = pattern.matcher(nameProduct);
+            if (nameProduct.isEmpty() || !matcher.find()) {
                 showErrorMessage("null");
             } else {
                 break;
