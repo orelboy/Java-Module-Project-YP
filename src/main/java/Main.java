@@ -7,9 +7,8 @@ public class Main {
                 "Контакты для связи с автором: https://t.me/orelboy / danil.ciplenkov@yandex.ru\n");
 
         AccountCalculator accountCalculator = new AccountCalculator();
-        int peopleAmount = accountCalculator.start();
-        ArrayList<Product> products = accountCalculator.dataImput();
+        int peopleAmount = accountCalculator.setPeopleAmount();
+        ArrayList<Product> products = accountCalculator.createList();
         accountCalculator.showList(peopleAmount, products);
-
     }
 }
